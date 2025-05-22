@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import StatsCard from './StatsCard';
 
@@ -30,7 +29,6 @@ export default function CaseStudy({
   phases,
   beforeMetrics
 }: CaseStudyProps) {
-  const [activePhase, setActivePhase] = useState(0);
   
   const calculateGrowth = (id: string, currentValue: string | number) => {
     const baselineMetric = beforeMetrics[id];
@@ -51,55 +49,41 @@ export default function CaseStudy({
         <p className="text-white/70 mt-1">{subtitle}</p>
       </div>
       
-      <div className="p-6 pb-0">
-        <div className="flex overflow-x-auto pb-4 gap-2 scrollbar-thin">
-          {phases.map((phase, index) => (
-            <button
-              key={index}
-              onClick={() => setActivePhase(index)}
-              className={cn(
-                "px-4 py-2 rounded-lg text-sm whitespace-nowrap transition-colors font-medium",
-                activePhase === index 
-                  ? "bg-agency-teal text-white" 
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-              )}
-            >
-              {phase.name}
-            </button>
-          ))}
-        </div>
-      </div>
-      
-      <div className="p-6 relative before-after-divider">
+      <div className="relative before-after-divider">
         {/* Joined marker line */}
         <div className="absolute left-0 top-0 h-full w-1 bg-agency-teal flex items-center justify-center z-10">
-          <div className="absolute -left-[42px] top-1/2 -translate-y-1/2 w-20 h-8 bg-agency-teal text-white text-xs font-medium flex items-center justify-center rounded-r-lg">
+          <div className="absolute -left-[42px] top-20 w-20 h-8 bg-agency-teal text-white text-xs font-medium flex items-center justify-center rounded-r-lg">
             {joinDate}
           </div>
         </div>
         
-        <div className="pl-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {phases[activePhase].stats.map((stat) => {
-              const growth = calculateGrowth(stat.id, stat.value);
-              const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
-              
-              return (
-                <StatsCard
-                  key={stat.id}
-                  label={stat.label}
-                  baseline={beforeMetrics[stat.id]?.value || '—'}
-                  current={stat.value}
-                  growth={growth}
-                  isPositive={growth ? growth > 0 : true}
-                  isReduction={isReduction}
-                  prefix={stat.prefix || beforeMetrics[stat.id]?.prefix || ''}
-                  suffix={stat.suffix || beforeMetrics[stat.id]?.suffix || ''}
-                  newMetric={stat.isNew}
-                />
-              );
-            })}
-          </div>
+        <div className="pl-8 p-6 space-y-6">
+          {phases.map((phase, index) => (
+            <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0 last:pb-0">
+              <h4 className="font-medium text-lg mb-4">{phase.name}</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {phase.stats.map((stat) => {
+                  const growth = calculateGrowth(stat.id, stat.value);
+                  const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
+                  
+                  return (
+                    <StatsCard
+                      key={stat.id}
+                      label={stat.label}
+                      baseline={beforeMetrics[stat.id]?.value || '—'}
+                      current={stat.value}
+                      growth={growth}
+                      isPositive={growth ? growth > 0 : true}
+                      isReduction={isReduction}
+                      prefix={stat.prefix || beforeMetrics[stat.id]?.prefix || ''}
+                      suffix={stat.suffix || beforeMetrics[stat.id]?.suffix || ''}
+                      newMetric={stat.isNew}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

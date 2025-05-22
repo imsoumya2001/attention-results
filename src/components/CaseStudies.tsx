@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import CaseStudy, { Phase } from './CaseStudy';
 
@@ -157,15 +156,11 @@ export default function CaseStudies() {
     <section id="case-studies" className="section container mx-auto px-4 relative">
       <div 
         id="case-studies-title"
-        className={`text-center mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
+        className={`text-center mb-12 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-3xl md:text-4xl font-light tracking-wide mb-4">
           Our Success Stories
         </h2>
-        <p className="text-agency-navy/70 dark:text-white/70 max-w-2xl mx-auto">
-          We're proud to showcase these case studies that demonstrate our ability to drive 
-          significant, measurable growth for our clients.
-        </p>
       </div>
       
       <div className={`${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>

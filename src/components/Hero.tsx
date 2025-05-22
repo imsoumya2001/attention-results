@@ -21,15 +21,10 @@ export default function Hero() {
       
       <div className="container mx-auto px-4 pt-24 pb-16 relative z-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in opacity-0" style={{ animationDelay: '0.2s' }}>
-            We Turn <span className="gradient-text">Attention</span> <br /> 
-            Into <span className="gradient-text">Results</span>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-light leading-tight animate-fade-in opacity-0 tracking-wide" style={{ animationDelay: '0.2s' }}>
+            We Turn <span className="gradient-text font-normal">Attention</span> <br /> 
+            Into <span className="gradient-text font-normal">Results</span>
           </h1>
-          
-          <p className="text-lg md:text-xl text-agency-navy/80 dark:text-white/80 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.4s' }}>
-            Your expert marketing partner in crafting success stories 
-            through data-driven strategies and measurable outcomes.
-          </p>
           
           <div className="pt-8 animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
             <button
