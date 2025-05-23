@@ -1,9 +1,10 @@
 
 import { cn } from '@/lib/utils';
+import { TrendingDown, TrendingUp } from 'lucide-react';
 
 interface StatsCardProps {
   label: string;
-  baseline: string | number;
+  baseline?: string | number;
   current: string | number;
   growth?: number;
   isPositive?: boolean;
@@ -24,24 +25,43 @@ export default function StatsCard({
   suffix = '',
   newMetric = false
 }: StatsCardProps) {
+  // Determine if the trend should be shown as positive (green) or negative (red)
+  const showAsPositive = isReduction ? !isPositive : isPositive;
+  
   return (
-    <div className="glass-card rounded-lg p-4 w-full">
-      <h4 className="text-sm text-agency-navy/70 dark:text-white/70 mb-2 font-medium">
-        {label}
-      </h4>
+    <div className="glass-card rounded-lg p-3 w-full">
+      <div className="flex items-center gap-2 mb-2">
+        <div className={cn(
+          "w-6 h-6 rounded-full flex items-center justify-center",
+          showAsPositive ? "bg-green-100 dark:bg-green-900/30" : "bg-red-100 dark:bg-red-900/30"
+        )}>
+          {showAsPositive ? (
+            <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
+          ) : (
+            <TrendingDown className="w-4 h-4 text-red-600 dark:text-red-400" />
+          )}
+        </div>
+        <h4 className="text-xs md:text-sm text-agency-navy/70 dark:text-white/70 font-medium">
+          {label}
+        </h4>
+      </div>
       
-      <div className="flex justify-between items-end">
-        <div className="space-y-1">
-          <div className="flex items-baseline">
-            <span className="text-sm opacity-60 mr-2">Before:</span>
-            <span className="font-medium">
-              {newMetric ? '—' : `${prefix}${baseline}${suffix}`}
-            </span>
-          </div>
+      <div className="flex justify-between items-baseline">
+        <div>
+          {baseline !== undefined && (
+            <div className="flex items-baseline mb-1">
+              <span className="text-xs opacity-60 mr-1">Before:</span>
+              <span className="text-xs font-medium">
+                {newMetric ? '—' : `${prefix}${baseline}${suffix}`}
+              </span>
+            </div>
+          )}
           
           <div className="flex items-baseline">
-            <span className="text-sm opacity-60 mr-2">After:</span>
-            <span className="text-xl font-bold">
+            <span className={cn(
+              "text-base font-bold",
+              baseline !== undefined && "text-agency-teal"
+            )}>
               {prefix}{current}{suffix}
             </span>
           </div>
@@ -50,10 +70,10 @@ export default function StatsCard({
         {growth !== undefined && !newMetric && (
           <div 
             className={cn(
-              "text-sm font-bold rounded-full py-1 px-3",
-              isPositive && !isReduction && "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-              !isPositive && "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
-              isReduction && "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+              "text-xs font-bold rounded-full py-1 px-2",
+              showAsPositive 
+                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
             )}
           >
             {isReduction ? '-' : '+'}{Math.abs(growth)}%
@@ -61,7 +81,7 @@ export default function StatsCard({
         )}
         
         {newMetric && (
-          <div className="text-sm font-bold rounded-full py-1 px-3 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+          <div className="text-xs font-bold rounded-full py-1 px-2 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
             New
           </div>
         )}

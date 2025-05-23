@@ -1,8 +1,13 @@
+
 import { useState, useEffect } from 'react';
 import CaseStudy, { Phase } from './CaseStudy';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ChevronDown } from 'lucide-react';
 
 export default function CaseStudies() {
   const [isVisible, setIsVisible] = useState(false);
+  const [openAriz, setOpenAriz] = useState(false);
+  const [openRamag, setOpenRamag] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -66,17 +71,18 @@ export default function CaseStudies() {
         { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 328, prefix: 'OMR ' }
       ]
     },
-    {
-      name: 'April 2025',
-      stats: [
-        { id: 'dailyTotal', label: 'Daily Takeaway + Aggregators', value: 39 },
-        { id: 'aov', label: 'Average Order Value', value: 3.3, prefix: 'OMR ' },
-        { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 414 },
-        { id: 'impressions', label: 'Monthly Instagram Impressions', value: 221000 },
-        { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 220, prefix: 'OMR ' }
-      ]
-    }
   ];
+
+  const arizLatestPhase: Phase = {
+    name: 'April 2025',
+    stats: [
+      { id: 'dailyTotal', label: 'Daily Takeaway + Aggregators', value: 39 },
+      { id: 'aov', label: 'Average Order Value', value: 3.3, prefix: 'OMR ' },
+      { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 414 },
+      { id: 'impressions', label: 'Monthly Instagram Impressions', value: 221000 },
+      { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 220, prefix: 'OMR ' }
+    ]
+  };
 
   // KSA Restaurant Case Study Data
   const ksaBeforeMetrics = {
@@ -140,17 +146,18 @@ export default function CaseStudies() {
         { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 451, prefix: 'OMR ' }
       ]
     },
-    {
-      name: 'Further Growth (Apr 2025)',
-      stats: [
-        { id: 'inquiries', label: 'Total Monthly Online Inquiries', value: 291 },
-        { id: 'siteVisits', label: 'Site Visits from Online', value: 28 },
-        { id: 'projects', label: 'Projects from Online Inquiries', value: 14 },
-        { id: 'cpi', label: 'Cost Per Inquiry', value: 2.2, prefix: '$' },
-        { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 640, prefix: 'OMR ' }
-      ]
-    }
   ];
+
+  const ramagLatestPhase: Phase = {
+    name: 'Further Growth (Apr 2025)',
+    stats: [
+      { id: 'inquiries', label: 'Total Monthly Online Inquiries', value: 291 },
+      { id: 'siteVisits', label: 'Site Visits from Online', value: 28 },
+      { id: 'projects', label: 'Projects from Online Inquiries', value: 14 },
+      { id: 'cpi', label: 'Cost Per Inquiry', value: 2.2, prefix: '$' },
+      { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 640, prefix: 'OMR ' }
+    ]
+  };
 
   return (
     <section id="case-studies" className="section container mx-auto px-4 relative">
@@ -163,34 +170,71 @@ export default function CaseStudies() {
         </h2>
       </div>
       
-      <div className={`${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-        <CaseStudy
-          title="Ariz Restaurant"
-          subtitle="Seeb, Oman"
-          joinDate="Joined November 2024"
-          phases={arizPhases}
-          beforeMetrics={arizBeforeMetrics}
-        />
-      </div>
-      
-      <div className={`${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
-        <CaseStudy
-          title="Premium Restaurant Chain"
-          subtitle="Jeddah, KSA (Name under NDA)"
-          joinDate="Joined April 14th, 2025"
-          phases={ksaPhases}
-          beforeMetrics={ksaBeforeMetrics}
-        />
-      </div>
-      
-      <div className={`${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
-        <CaseStudy
-          title="Ramag Furniture"
-          subtitle="Oman"
-          joinDate="Joined August 2024"
-          phases={ramagPhases}
-          beforeMetrics={ramagBeforeMetrics}
-        />
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+        {/* Ariz Restaurant */}
+        <div className="col-span-1">
+          <CaseStudy
+            title="Ariz Restaurant"
+            subtitle="Seeb, Oman"
+            joinDate="Joined November 2024"
+            phases={arizPhases}
+            beforeMetrics={arizBeforeMetrics}
+          />
+          <Collapsible open={openAriz} onOpenChange={setOpenAriz} className="mt-4">
+            <CollapsibleTrigger className="w-full p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
+              <span>Latest Results from Ariz Restaurant</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${openAriz ? 'rotate-180' : ''}`} />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-2">
+              <CaseStudy
+                title=""
+                subtitle=""
+                joinDate=""
+                phases={[arizLatestPhase]}
+                beforeMetrics={arizBeforeMetrics}
+                isLatestResults
+              />
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+        
+        {/* KSA Restaurant */}
+        <div className="col-span-1">
+          <CaseStudy
+            title="Premium Restaurant Chain"
+            subtitle="Jeddah, KSA (Name under NDA)"
+            joinDate="Joined April 14th, 2025"
+            phases={ksaPhases}
+            beforeMetrics={ksaBeforeMetrics}
+          />
+        </div>
+        
+        {/* Ramag Furniture */}
+        <div className="col-span-1">
+          <CaseStudy
+            title="Ramag Furniture"
+            subtitle="Oman"
+            joinDate="Joined August 2024"
+            phases={ramagPhases}
+            beforeMetrics={ramagBeforeMetrics}
+          />
+          <Collapsible open={openRamag} onOpenChange={setOpenRamag} className="mt-4">
+            <CollapsibleTrigger className="w-full p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
+              <span>Latest Results from Ramag Furniture</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${openRamag ? 'rotate-180' : ''}`} />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-2">
+              <CaseStudy
+                title=""
+                subtitle=""
+                joinDate=""
+                phases={[ramagLatestPhase]}
+                beforeMetrics={ramagBeforeMetrics}
+                isLatestResults
+              />
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
       </div>
     </section>
   );

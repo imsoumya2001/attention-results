@@ -20,6 +20,7 @@ interface CaseStudyProps {
   joinDate: string;
   phases: Phase[];
   beforeMetrics: Record<string, { value: string | number; prefix?: string; suffix?: string }>;
+  isLatestResults?: boolean;
 }
 
 export default function CaseStudy({ 
@@ -27,7 +28,8 @@ export default function CaseStudy({
   subtitle, 
   joinDate, 
   phases,
-  beforeMetrics
+  beforeMetrics,
+  isLatestResults = false
 }: CaseStudyProps) {
   
   const calculateGrowth = (id: string, currentValue: string | number) => {
@@ -43,36 +45,44 @@ export default function CaseStudy({
   };
   
   return (
-    <div className="glass-card rounded-xl overflow-hidden mb-16">
-      <div className="bg-agency-navy p-6 text-white">
-        <h3 className="text-xl md:text-2xl font-bold">{title}</h3>
-        <p className="text-white/70 mt-1">{subtitle}</p>
-      </div>
+    <div className={cn(
+      "glass-card rounded-xl overflow-hidden",
+      !isLatestResults && "mb-4"
+    )}>
+      {!isLatestResults && title && (
+        <div className="bg-agency-navy p-4 text-white">
+          <h3 className="text-lg md:text-xl font-bold">{title}</h3>
+          <p className="text-white/70 text-sm">{subtitle}</p>
+        </div>
+      )}
       
       <div className="relative before-after-divider">
         {/* Joined marker line */}
-        <div className="absolute left-0 top-0 h-full w-1 bg-agency-teal flex items-center justify-center z-10">
-          <div className="absolute -left-[42px] top-20 w-20 h-8 bg-agency-teal text-white text-xs font-medium flex items-center justify-center rounded-r-lg">
-            {joinDate}
+        {joinDate && (
+          <div className="absolute left-0 top-0 h-full w-1 bg-agency-teal flex items-center justify-center z-10">
+            <div className="absolute -left-[42px] top-16 w-20 h-8 bg-agency-teal text-white text-xs font-medium flex items-center justify-center rounded-r-lg">
+              {joinDate}
+            </div>
           </div>
-        </div>
+        )}
         
-        <div className="pl-8 p-6 space-y-6">
+        <div className="pl-6 p-4 space-y-4">
           {phases.map((phase, index) => (
-            <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0 last:pb-0">
-              <h4 className="font-medium text-lg mb-4">{phase.name}</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
+              <h4 className="font-medium text-base mb-3">{phase.name}</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
                   const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
+                  const isFirst = index === 0 && !isLatestResults;
                   
                   return (
                     <StatsCard
                       key={stat.id}
                       label={stat.label}
-                      baseline={beforeMetrics[stat.id]?.value || '—'}
+                      baseline={isFirst ? undefined : (beforeMetrics[stat.id]?.value || '—')}
                       current={stat.value}
-                      growth={growth}
+                      growth={isFirst ? undefined : growth}
                       isPositive={growth ? growth > 0 : true}
                       isReduction={isReduction}
                       prefix={stat.prefix || beforeMetrics[stat.id]?.prefix || ''}

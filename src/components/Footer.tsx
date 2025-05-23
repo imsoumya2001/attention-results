@@ -1,5 +1,5 @@
 
-import { Instagram } from 'lucide-react';
+import { Instagram, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -23,6 +23,14 @@ export default function Footer() {
               className="text-white/80 hover:text-agency-teal transition-colors"
             >
               <Instagram className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://wa.me/yourwhatsappnumber" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/80 hover:text-agency-teal transition-colors"
+            >
+              <MessageCircle className="w-5 h-5" />
             </a>
           </div>
         </div>
