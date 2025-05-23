@@ -46,35 +46,35 @@ export default function StatsCard({
   const getMetricIcon = (id: string) => {
     switch (id) {
       case 'takeaway':
-        return <ShoppingBag className="w-3 h-3" />;
+        return <ShoppingBag className="w-3 h-3 text-agency-teal" />;
       case 'aggregatorOrders':
-        return <ShoppingCart className="w-3 h-3" />;
+        return <ShoppingCart className="w-3 h-3 text-agency-teal" />;
       case 'aov':
-        return <DollarSign className="w-3 h-3" />;
+        return <DollarSign className="w-3 h-3 text-agency-teal" />;
       case 'whatsappOrders':
-        return <Smartphone className="w-3 h-3" />;
+        return <Smartphone className="w-3 h-3 text-agency-teal" />;
       case 'impressions':
-        return <Instagram className="w-3 h-3" />;
+        return <Instagram className="w-3 h-3 text-agency-teal" />;
       case 'marketingSpend':
-        return <CreditCard className="w-3 h-3" />;
+        return <CreditCard className="w-3 h-3 text-agency-teal" />;
       case 'dailyTotal':
-        return <ShoppingBag className="w-3 h-3" />;
+        return <ShoppingBag className="w-3 h-3 text-agency-teal" />;
       case 'dailyOrders':
-        return <ShoppingBag className="w-3 h-3" />;
+        return <ShoppingBag className="w-3 h-3 text-agency-teal" />;
       case 'buffet':
-        return <Users className="w-3 h-3" />;
+        return <Users className="w-3 h-3 text-agency-teal" />;
       case 'siteVisits':
-        return <Store className="w-3 h-3" />;
+        return <Store className="w-3 h-3 text-agency-teal" />;
       case 'projects':
-        return <Target className="w-3 h-3" />;
+        return <Target className="w-3 h-3 text-agency-teal" />;
       case 'inquiries':
-        return <Users className="w-3 h-3" />;
+        return <Users className="w-3 h-3 text-agency-teal" />;
       case 'cpi':
-        return <DollarSign className="w-3 h-3" />;
+        return <DollarSign className="w-3 h-3 text-agency-teal" />;
       default:
         return showAsPositive ? 
-          <TrendingUp className="w-3 h-3" /> : 
-          <TrendingDown className="w-3 h-3" />;
+          <TrendingUp className="w-3 h-3 text-agency-teal" /> : 
+          <TrendingDown className="w-3 h-3 text-agency-teal" />;
     }
   };
   
@@ -82,18 +82,9 @@ export default function StatsCard({
     <div className="glass-card rounded-lg p-2 w-full">
       <div className="flex items-center gap-1 mb-1">
         <div className={cn(
-          "w-5 h-5 rounded-full flex items-center justify-center bg-gradient-to-r",
-          showAsPositive ? 
-            "from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30" : 
-            "from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30"
+          "w-5 h-5 rounded-full flex items-center justify-center bg-agency-teal/10"
         )}>
-          <span className={cn(
-            showAsPositive ? 
-              "text-green-600 dark:text-green-400" : 
-              "text-red-600 dark:text-red-400"
-          )}>
-            {getMetricIcon(metricId)}
-          </span>
+          {getMetricIcon(metricId)}
         </div>
         <h4 className="text-xs text-agency-navy/70 dark:text-white/70 font-medium truncate">
           {label}
@@ -130,7 +121,7 @@ export default function StatsCard({
                 : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
             )}
           >
-            {isReduction ? '-' : '+'}{Math.abs(growth)}%
+            {growth < 0 ? "-" : "+"}{Math.abs(growth)}%
           </div>
         )}
         

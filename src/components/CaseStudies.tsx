@@ -39,8 +39,8 @@ export default function CaseStudies() {
     {
       name: 'Baseline (Oct 2024)',
       stats: [
-        { id: 'takeaway', label: 'Avg Daily Takeaway', value: 13 },
-        { id: 'aggregatorOrders', label: 'Avg Daily Aggregator Orders', value: 8 },
+        { id: 'takeaway', label: 'Average Daily Takeaway', value: 13 },
+        { id: 'aggregatorOrders', label: 'Average Daily Aggregator Orders', value: 8 },
         { id: 'aov', label: 'Average Order Value', value: 2.1, prefix: 'OMR ' },
         { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 27 },
         { id: 'impressions', label: 'Monthly Instagram Impressions', value: 48000 },
@@ -50,8 +50,8 @@ export default function CaseStudies() {
     {
       name: 'After 3 Months (Jan 2025)',
       stats: [
-        { id: 'takeaway', label: 'Avg Daily Takeaway', value: 29 },
-        { id: 'aggregatorOrders', label: 'Avg Daily Aggregator Orders', value: 18 },
+        { id: 'takeaway', label: 'Average Daily Takeaway', value: 29 },
+        { id: 'aggregatorOrders', label: 'Average Daily Aggregator Orders', value: 18 },
         { id: 'aov', label: 'Average Order Value', value: 2.8, prefix: 'OMR ' },
         { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 122 },
         { id: 'impressions', label: 'Monthly Instagram Impressions', value: 119000 },
@@ -61,9 +61,9 @@ export default function CaseStudies() {
     {
       name: 'Ramadan (Feb-Mar 2025)',
       stats: [
-        { id: 'buffet', label: 'Daily Avg Buffet Orders', value: 61 },
-        { id: 'takeaway', label: 'Daily Avg Takeaway', value: 36 },
-        { id: 'aggregatorOrders', label: 'Daily Avg Aggregator Orders', value: 14 },
+        { id: 'buffet', label: 'Daily Average Buffet Orders', value: 61 },
+        { id: 'takeaway', label: 'Daily Average Takeaway', value: 36 },
+        { id: 'aggregatorOrders', label: 'Daily Average Aggregator Orders', value: 14 },
         { id: 'dailyTotal', label: 'Total Daily Orders', value: 111 },
         { id: 'aov', label: 'Average Order Value', value: 3.1, prefix: 'OMR ' },
         { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 228 },

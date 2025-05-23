@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { MessageCircle } from 'lucide-react';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -57,12 +58,15 @@ export default function Header() {
           </button>
         </nav>
 
-        <button 
-          onClick={() => scrollTo('contact')}
-          className="bg-agency-teal hover:bg-agency-teal/90 text-white py-2 px-4 md:px-6 rounded-lg transition-colors"
+        <a 
+          href="https://wa.me/96876990710"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-agency-teal hover:bg-agency-teal/90 text-white py-2 px-4 md:px-6 rounded-lg transition-colors flex items-center gap-1"
         >
-          Get in Touch
-        </button>
+          <MessageCircle className="w-4 h-4" />
+          WhatsApp Us
+        </a>
       </div>
     </header>
   );

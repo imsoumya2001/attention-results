@@ -17,7 +17,7 @@ export default function Footer() {
           
           <div className="flex items-center space-x-4">
             <a 
-              href="https://instagram.com/attention.social" 
+              href="https://www.instagram.com/yusrattention/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/80 hover:text-agency-teal transition-colors"
@@ -25,7 +25,7 @@ export default function Footer() {
               <Instagram className="w-5 h-5" />
             </a>
             <a 
-              href="https://wa.me/yourwhatsappnumber" 
+              href="https://wa.me/96876990710" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/80 hover:text-agency-teal transition-colors"

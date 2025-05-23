@@ -57,7 +57,7 @@ export default function CaseStudy({
       )}
       
       <div className="p-4 space-y-4">
-        {/* Joined marker line - removed teal line and made month name prominent */}
+        {/* Joined marker line - made month name prominent */}
         {joinDate && (
           <div className="text-sm font-medium text-agency-teal mb-2">
             {joinDate}
@@ -74,13 +74,27 @@ export default function CaseStudy({
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
                   const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
-                  const isFirst = index === 0 && !isLatestResults;
+                  const isFirst = index === 0;
+                  
+                  // Modify label to include "After" for non-baseline stats
+                  let displayLabel = stat.label;
+                  if (!isFirst && !isLatestResults && !displayLabel.includes("After")) {
+                    displayLabel = displayLabel.replace("Average", "After Average");
+                    displayLabel = displayLabel.replace("Avg", "After Average");
+                    
+                    if (!displayLabel.startsWith("After")) {
+                      displayLabel = "After " + displayLabel;
+                    }
+                  }
+                  
+                  // Fix abbreviated labels
+                  displayLabel = displayLabel.replace("Avg ", "Average ");
                   
                   return (
                     <StatsCard
                       key={stat.id}
-                      label={stat.label}
-                      baseline={isFirst ? undefined : (beforeMetrics[stat.id]?.value || '—')}
+                      label={displayLabel}
+                      baseline={isFirst || isLatestResults ? undefined : (beforeMetrics[stat.id]?.value || '—')}
                       current={stat.value}
                       growth={isFirst ? undefined : growth}
                       isPositive={growth ? growth > 0 : true}
