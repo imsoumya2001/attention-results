@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-agency-teal/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-agency-light-blue/20 rounded-full blur-3xl" />
       
-      <div className="container mx-auto px-4 py-12 relative z-20">
+      <div className="container mx-auto px-4 relative z-20 py-[35px]">
         <div className="max-w-4xl mx-auto text-center space-y-5">
           <h1 style={{
           animationDelay: '0.2s'
