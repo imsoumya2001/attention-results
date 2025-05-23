@@ -56,21 +56,21 @@ export default function CaseStudy({
         </div>
       )}
       
-      <div className="relative before-after-divider">
-        {/* Joined marker line */}
+      <div className="p-4 space-y-4">
+        {/* Joined marker line - removed teal line and made month name prominent */}
         {joinDate && (
-          <div className="absolute left-0 top-0 h-full w-1 bg-agency-teal flex items-center justify-center z-10">
-            <div className="absolute -left-[42px] top-16 w-20 h-8 bg-agency-teal text-white text-xs font-medium flex items-center justify-center rounded-r-lg">
-              {joinDate}
-            </div>
+          <div className="text-sm font-medium text-agency-teal mb-2">
+            {joinDate}
           </div>
         )}
         
-        <div className="pl-6 p-4 space-y-4">
+        <div className="space-y-6">
           {phases.map((phase, index) => (
             <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
-              <h4 className="font-medium text-base mb-3">{phase.name}</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              <h4 className="font-medium text-base mb-3 bg-agency-teal/10 p-2 rounded-lg text-agency-teal">
+                {phase.name}
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
                   const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
@@ -88,6 +88,7 @@ export default function CaseStudy({
                       prefix={stat.prefix || beforeMetrics[stat.id]?.prefix || ''}
                       suffix={stat.suffix || beforeMetrics[stat.id]?.suffix || ''}
                       newMetric={stat.isNew}
+                      metricId={stat.id}
                     />
                   );
                 })}

@@ -105,7 +105,7 @@ export default function CaseStudies() {
       ]
     },
     {
-      name: 'Results (Apr-May, ~1 month)',
+      name: 'After Results (Apr-May, ~1 month)',
       stats: [
         { id: 'dailyOrders', label: 'Daily Takeaway + Aggregators', value: 36 },
         { id: 'aov', label: 'Average Order Value', value: 38, prefix: 'SAR ' },
