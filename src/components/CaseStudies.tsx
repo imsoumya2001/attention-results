@@ -170,9 +170,9 @@ export default function CaseStudies() {
         </h2>
       </div>
       
-      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+      <div className={`space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
         {/* Ariz Restaurant */}
-        <div className="col-span-1">
+        <div>
           <CaseStudy
             title="Ariz Restaurant"
             subtitle="Seeb, Oman"
@@ -199,7 +199,7 @@ export default function CaseStudies() {
         </div>
         
         {/* KSA Restaurant */}
-        <div className="col-span-1">
+        <div>
           <CaseStudy
             title="Premium Restaurant Chain"
             subtitle="Jeddah, KSA (Name under NDA)"
@@ -210,7 +210,7 @@ export default function CaseStudies() {
         </div>
         
         {/* Ramag Furniture */}
-        <div className="col-span-1">
+        <div>
           <CaseStudy
             title="Ramag Furniture"
             subtitle="Oman"

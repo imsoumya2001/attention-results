@@ -70,7 +70,7 @@ export default function CaseStudy({
           {phases.map((phase, index) => (
             <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
               <h4 className="font-medium text-base mb-3">{phase.name}</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
                   const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
