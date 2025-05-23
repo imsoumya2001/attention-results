@@ -42,6 +42,14 @@ export default function StatsCard({
   // Determine if the trend should be shown as positive (green) or negative (red)
   const showAsPositive = isReduction ? !isPositive : isPositive;
   
+  // Format numbers with k for thousands (for Instagram impressions)
+  const formatValue = (value: string | number) => {
+    if (metricId === 'impressions' && typeof value === 'number' && value >= 1000) {
+      return `${Math.round(value / 1000)}k`;
+    }
+    return value;
+  };
+
   // Get the appropriate icon based on the metric ID
   const getMetricIcon = (id: string) => {
     switch (id) {
@@ -91,45 +99,45 @@ export default function StatsCard({
         </h4>
       </div>
       
-      <div className="flex justify-between items-baseline">
-        <div>
-          {baseline !== undefined && (
-            <div className="flex items-baseline mb-1">
-              <span className="text-xs opacity-60 mr-1">Before:</span>
-              <span className="text-xs font-medium">
-                {newMetric ? '—' : `${prefix}${baseline}${suffix}`}
-              </span>
+      <div className="space-y-1">
+        {baseline !== undefined && (
+          <div className="flex items-baseline">
+            <span className="text-xs opacity-60 mr-1">Before:</span>
+            <span className="text-xs font-medium">
+              {newMetric ? '—' : `${prefix}${formatValue(baseline)}${suffix}`}
+            </span>
+          </div>
+        )}
+        
+        <div className="flex justify-between items-baseline">
+          <div className="flex items-baseline">
+            <span className="text-xs opacity-60 mr-1">After:</span>
+            <span className={cn(
+              "text-sm font-bold text-agency-teal",
+            )}>
+              {prefix}{formatValue(current)}{suffix}
+            </span>
+          </div>
+          
+          {growth !== undefined && !newMetric && (
+            <div 
+              className={cn(
+                "text-xs font-bold rounded-full py-0.5 px-1.5",
+                showAsPositive 
+                  ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                  : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+              )}
+            >
+              {growth < 0 ? "-" : "+"}{Math.abs(growth)}%
             </div>
           )}
           
-          <div className="flex items-baseline">
-            <span className={cn(
-              "text-sm font-bold",
-              baseline !== undefined && "text-agency-teal"
-            )}>
-              {prefix}{current}{suffix}
-            </span>
-          </div>
+          {newMetric && (
+            <div className="text-xs font-bold rounded-full py-0.5 px-1.5 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+              New
+            </div>
+          )}
         </div>
-        
-        {growth !== undefined && !newMetric && (
-          <div 
-            className={cn(
-              "text-xs font-bold rounded-full py-0.5 px-1.5",
-              showAsPositive 
-                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
-                : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
-            )}
-          >
-            {growth < 0 ? "-" : "+"}{Math.abs(growth)}%
-          </div>
-        )}
-        
-        {newMetric && (
-          <div className="text-xs font-bold rounded-full py-0.5 px-1.5 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
-            New
-          </div>
-        )}
       </div>
     </div>
   );

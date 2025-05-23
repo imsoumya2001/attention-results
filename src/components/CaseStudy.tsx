@@ -59,7 +59,7 @@ export default function CaseStudy({
       <div className="p-4 space-y-4">
         {/* Joined marker line - made month name prominent */}
         {joinDate && (
-          <div className="text-sm font-medium text-agency-teal mb-2">
+          <div className="text-base font-medium text-agency-navy dark:text-white mb-2">
             {joinDate}
           </div>
         )}
@@ -67,36 +67,21 @@ export default function CaseStudy({
         <div className="space-y-6">
           {phases.map((phase, index) => (
             <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
-              <h4 className="font-medium text-base mb-3 bg-agency-teal/10 p-2 rounded-lg text-agency-teal">
+              <h4 className="font-medium text-base mb-3">
                 {phase.name}
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
                   const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
-                  const isFirst = index === 0;
-                  
-                  // Modify label to include "After" for non-baseline stats
-                  let displayLabel = stat.label;
-                  if (!isFirst && !isLatestResults && !displayLabel.includes("After")) {
-                    displayLabel = displayLabel.replace("Average", "After Average");
-                    displayLabel = displayLabel.replace("Avg", "After Average");
-                    
-                    if (!displayLabel.startsWith("After")) {
-                      displayLabel = "After " + displayLabel;
-                    }
-                  }
-                  
-                  // Fix abbreviated labels
-                  displayLabel = displayLabel.replace("Avg ", "Average ");
                   
                   return (
                     <StatsCard
                       key={stat.id}
-                      label={displayLabel}
-                      baseline={isFirst || isLatestResults ? undefined : (beforeMetrics[stat.id]?.value || '—')}
+                      label={stat.label}
+                      baseline={beforeMetrics[stat.id]?.value || '—'}
                       current={stat.value}
-                      growth={isFirst ? undefined : growth}
+                      growth={index === 0 ? undefined : growth}
                       isPositive={growth ? growth > 0 : true}
                       isReduction={isReduction}
                       prefix={stat.prefix || beforeMetrics[stat.id]?.prefix || ''}

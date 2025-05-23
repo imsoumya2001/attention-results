@@ -17,7 +17,7 @@ export default function CaseStudies() {
       }
     });
 
-    observer.observe(document.getElementById('case-studies-title')!);
+    observer.observe(document.getElementById('case-studies')!);
     
     return () => {
       observer.disconnect();
@@ -39,8 +39,8 @@ export default function CaseStudies() {
     {
       name: 'Baseline (Oct 2024)',
       stats: [
-        { id: 'takeaway', label: 'Average Daily Takeaway', value: 13 },
-        { id: 'aggregatorOrders', label: 'Average Daily Aggregator Orders', value: 8 },
+        { id: 'takeaway', label: 'Daily Takeaway', value: 13 },
+        { id: 'aggregatorOrders', label: 'Daily Aggregator Orders', value: 8 },
         { id: 'aov', label: 'Average Order Value', value: 2.1, prefix: 'OMR ' },
         { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 27 },
         { id: 'impressions', label: 'Monthly Instagram Impressions', value: 48000 },
@@ -50,8 +50,8 @@ export default function CaseStudies() {
     {
       name: 'After 3 Months (Jan 2025)',
       stats: [
-        { id: 'takeaway', label: 'Average Daily Takeaway', value: 29 },
-        { id: 'aggregatorOrders', label: 'Average Daily Aggregator Orders', value: 18 },
+        { id: 'takeaway', label: 'Daily Takeaway', value: 29 },
+        { id: 'aggregatorOrders', label: 'Daily Aggregator Orders', value: 18 },
         { id: 'aov', label: 'Average Order Value', value: 2.8, prefix: 'OMR ' },
         { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 122 },
         { id: 'impressions', label: 'Monthly Instagram Impressions', value: 119000 },
@@ -61,9 +61,9 @@ export default function CaseStudies() {
     {
       name: 'Ramadan (Feb-Mar 2025)',
       stats: [
-        { id: 'buffet', label: 'Daily Average Buffet Orders', value: 61 },
-        { id: 'takeaway', label: 'Daily Average Takeaway', value: 36 },
-        { id: 'aggregatorOrders', label: 'Daily Average Aggregator Orders', value: 14 },
+        { id: 'buffet', label: 'Daily Buffet Orders', value: 61 },
+        { id: 'takeaway', label: 'Daily Takeaway', value: 36 },
+        { id: 'aggregatorOrders', label: 'Daily Aggregator Orders', value: 14 },
         { id: 'dailyTotal', label: 'Total Daily Orders', value: 111 },
         { id: 'aov', label: 'Average Order Value', value: 3.1, prefix: 'OMR ' },
         { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 228 },
@@ -129,7 +129,7 @@ export default function CaseStudies() {
     {
       name: 'Baseline (May-Jun 2024)',
       stats: [
-        { id: 'inquiries', label: 'Total Monthly Online Inquiries', value: 18 },
+        { id: 'inquiries', label: 'Monthly Online Inquiries', value: 18 },
         { id: 'siteVisits', label: 'Site Visits from Online', value: 0 },
         { id: 'projects', label: 'Projects from Online Inquiries', value: 0 },
         { id: 'cpi', label: 'Cost Per Inquiry', value: 24, prefix: '$' },
@@ -139,7 +139,7 @@ export default function CaseStudies() {
     {
       name: 'After 3 Months (Oct 2024)',
       stats: [
-        { id: 'inquiries', label: 'Total Monthly Online Inquiries', value: 188 },
+        { id: 'inquiries', label: 'Monthly Online Inquiries', value: 188 },
         { id: 'siteVisits', label: 'Site Visits from Online', value: 29, isNew: true },
         { id: 'projects', label: 'Projects from Online Inquiries', value: 8, isNew: true },
         { id: 'cpi', label: 'Cost Per Inquiry', value: 2.4, prefix: '$' },
@@ -151,7 +151,7 @@ export default function CaseStudies() {
   const ramagLatestPhase: Phase = {
     name: 'Further Growth (Apr 2025)',
     stats: [
-      { id: 'inquiries', label: 'Total Monthly Online Inquiries', value: 291 },
+      { id: 'inquiries', label: 'Monthly Online Inquiries', value: 291 },
       { id: 'siteVisits', label: 'Site Visits from Online', value: 28 },
       { id: 'projects', label: 'Projects from Online Inquiries', value: 14 },
       { id: 'cpi', label: 'Cost Per Inquiry', value: 2.2, prefix: '$' },
@@ -160,16 +160,7 @@ export default function CaseStudies() {
   };
 
   return (
-    <section id="case-studies" className="section container mx-auto px-4 relative">
-      <div 
-        id="case-studies-title"
-        className={`text-center mb-12 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
-      >
-        <h2 className="text-3xl md:text-4xl font-light tracking-wide mb-4">
-          Our Success Stories
-        </h2>
-      </div>
-      
+    <section id="case-studies" className="container mx-auto px-4 pt-2">
       <div className={`space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
         {/* Ariz Restaurant */}
         <div>
