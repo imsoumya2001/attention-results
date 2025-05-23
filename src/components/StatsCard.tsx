@@ -1,5 +1,19 @@
+
 import { cn } from '@/lib/utils';
-import { TrendingDown, TrendingUp, ShoppingBag, DollarSign, ShoppingCart, Instagram, Smartphone, Users, Store, Target, CreditCard } from 'lucide-react';
+import { 
+  TrendingDown, 
+  TrendingUp, 
+  ShoppingBag, 
+  DollarSign, 
+  ShoppingCart, 
+  Instagram, 
+  Smartphone, 
+  Users, 
+  Store, 
+  Target, 
+  CreditCard
+} from 'lucide-react';
+
 interface StatsCardProps {
   label: string;
   baseline?: string | number;
@@ -12,10 +26,11 @@ interface StatsCardProps {
   newMetric?: boolean;
   metricId?: string;
 }
-export default function StatsCard({
-  label,
-  baseline,
-  current,
+
+export default function StatsCard({ 
+  label, 
+  baseline, 
+  current, 
   growth,
   isPositive = true,
   isReduction = false,
@@ -26,7 +41,7 @@ export default function StatsCard({
 }: StatsCardProps) {
   // Determine if the trend should be shown as positive (green) or negative (red)
   const showAsPositive = isReduction ? !isPositive : isPositive;
-
+  
   // Get the appropriate icon based on the metric ID
   const getMetricIcon = (id: string) => {
     switch (id) {
@@ -57,12 +72,18 @@ export default function StatsCard({
       case 'cpi':
         return <DollarSign className="w-3 h-3 text-agency-teal" />;
       default:
-        return showAsPositive ? <TrendingUp className="w-3 h-3 text-agency-teal" /> : <TrendingDown className="w-3 h-3 text-agency-teal" />;
+        return showAsPositive ? 
+          <TrendingUp className="w-3 h-3 text-agency-teal" /> : 
+          <TrendingDown className="w-3 h-3 text-agency-teal" />;
     }
   };
-  return <div className="glass-card rounded-lg p-2 w-full">
+  
+  return (
+    <div className="glass-card rounded-lg p-2 w-full">
       <div className="flex items-center gap-1 mb-1">
-        <div className={cn("w-5 h-5 rounded-full flex items-center justify-center bg-agency-teal/10")}>
+        <div className={cn(
+          "w-5 h-5 rounded-full flex items-center justify-center bg-agency-teal/10"
+        )}>
           {getMetricIcon(metricId)}
         </div>
         <h4 className="text-xs text-agency-navy/70 dark:text-white/70 font-medium truncate">
@@ -72,27 +93,44 @@ export default function StatsCard({
       
       <div className="flex justify-between items-baseline">
         <div>
-          {baseline !== undefined && <div className="flex items-baseline mb-1">
+          {baseline !== undefined && (
+            <div className="flex items-baseline mb-1">
               <span className="text-xs opacity-60 mr-1">Before:</span>
               <span className="text-xs font-medium">
                 {newMetric ? '—' : `${prefix}${baseline}${suffix}`}
               </span>
-            </div>}
+            </div>
+          )}
           
           <div className="flex items-baseline">
-            <span className="">
+            <span className={cn(
+              "text-sm font-bold",
+              baseline !== undefined && "text-agency-teal"
+            )}>
               {prefix}{current}{suffix}
             </span>
           </div>
         </div>
         
-        {growth !== undefined && !newMetric && <div className={cn("text-xs font-bold rounded-full py-0.5 px-1.5", showAsPositive ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400")}>
+        {growth !== undefined && !newMetric && (
+          <div 
+            className={cn(
+              "text-xs font-bold rounded-full py-0.5 px-1.5",
+              showAsPositive 
+                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+            )}
+          >
             {growth < 0 ? "-" : "+"}{Math.abs(growth)}%
-          </div>}
+          </div>
+        )}
         
-        {newMetric && <div className="text-xs font-bold rounded-full py-0.5 px-1.5 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+        {newMetric && (
+          <div className="text-xs font-bold rounded-full py-0.5 px-1.5 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
             New
-          </div>}
+          </div>
+        )}
       </div>
-    </div>;
+    </div>
+  );
 }
