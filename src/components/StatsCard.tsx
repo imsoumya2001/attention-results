@@ -87,8 +87,8 @@ export default function StatsCard({
   };
   
   return (
-    <div className="glass-card rounded-lg p-2 w-full">
-      <div className="flex items-center gap-1 mb-1">
+    <div className="glass-card rounded-lg p-1.5 sm:p-2 w-full">
+      <div className="flex items-center gap-1 mb-0.5 sm:mb-1">
         <div className={cn(
           "w-5 h-5 rounded-full flex items-center justify-center bg-agency-teal/10"
         )}>
@@ -99,7 +99,7 @@ export default function StatsCard({
         </h4>
       </div>
       
-      <div className="space-y-1">
+      <div className="space-y-0.5 sm:space-y-1">
         {baseline !== undefined && (
           <div className="flex items-baseline">
             <span className="text-xs opacity-60 mr-1">Before:</span>

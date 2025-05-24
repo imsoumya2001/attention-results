@@ -56,7 +56,7 @@ export default function CaseStudy({
         </div>
       )}
       
-      <div className="p-4 space-y-4">
+      <div className="p-3 sm:p-4 space-y-4">
         {/* Joined marker line - made month name prominent */}
         {joinDate && (
           <div className="text-base font-medium text-agency-navy dark:text-white mb-2">
@@ -64,13 +64,13 @@ export default function CaseStudy({
           </div>
         )}
         
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {phases.map((phase, index) => (
-            <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
-              <h4 className="font-medium text-base mb-3">
+            <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-3 sm:pb-4 last:border-0 last:pb-0">
+              <h4 className="font-medium text-base mb-2 sm:mb-3">
                 {phase.name}
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
                   const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';

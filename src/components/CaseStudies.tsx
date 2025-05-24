@@ -160,8 +160,8 @@ export default function CaseStudies() {
   };
 
   return (
-    <section id="case-studies" className="container mx-auto px-4 pt-2">
-      <div className={`space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+    <section id="case-studies" className="container mx-auto px-2 sm:px-4 pt-2">
+      <div className={`space-y-6 sm:space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
         {/* Ariz Restaurant */}
         <div>
           <CaseStudy
@@ -171,8 +171,8 @@ export default function CaseStudies() {
             phases={arizPhases}
             beforeMetrics={arizBeforeMetrics}
           />
-          <Collapsible open={openAriz} onOpenChange={setOpenAriz} className="mt-4">
-            <CollapsibleTrigger className="w-full p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
+          <Collapsible open={openAriz} onOpenChange={setOpenAriz} className="mt-3 sm:mt-4">
+            <CollapsibleTrigger className="w-full p-2 sm:p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
               <span>Latest Results from Ariz Restaurant</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${openAriz ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
