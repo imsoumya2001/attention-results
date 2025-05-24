@@ -25,6 +25,7 @@ interface StatsCardProps {
   suffix?: string;
   newMetric?: boolean;
   metricId?: string;
+  isBaselinePhase?: boolean;
 }
 
 export default function StatsCard({ 
@@ -37,7 +38,8 @@ export default function StatsCard({
   prefix = '',
   suffix = '',
   newMetric = false,
-  metricId = ''
+  metricId = '',
+  isBaselinePhase = false
 }: StatsCardProps) {
   // Determine if the trend should be shown as positive (green) or negative (red)
   const showAsPositive = isReduction ? !isPositive : isPositive;
@@ -94,13 +96,14 @@ export default function StatsCard({
         )}>
           {getMetricIcon(metricId)}
         </div>
-        <h4 className="text-xs text-agency-navy/70 dark:text-white/70 font-medium truncate">
+        <h4 className="text-xs text-agency-navy/70 dark:text-white/70 font-medium leading-tight">
           {label}
         </h4>
       </div>
       
       <div className="space-y-0.5 sm:space-y-1">
-        {baseline !== undefined && (
+        {/* Only show before/after on non-baseline phases */}
+        {!isBaselinePhase && baseline !== undefined && (
           <div className="flex items-baseline">
             <span className="text-xs opacity-60 mr-1">Before:</span>
             <span className="text-xs font-medium">
@@ -111,7 +114,8 @@ export default function StatsCard({
         
         <div className="flex justify-between items-baseline">
           <div className="flex items-baseline">
-            <span className="text-xs opacity-60 mr-1">After:</span>
+            {/* For baseline phase, don't show "After:" label */}
+            {!isBaselinePhase && <span className="text-xs opacity-60 mr-1">After:</span>}
             <span className={cn(
               "text-sm font-bold text-agency-teal",
             )}>
@@ -119,7 +123,7 @@ export default function StatsCard({
             </span>
           </div>
           
-          {growth !== undefined && !newMetric && (
+          {growth !== undefined && !newMetric && !isBaselinePhase && (
             <div 
               className={cn(
                 "text-xs font-bold rounded-full py-0.5 px-1.5",

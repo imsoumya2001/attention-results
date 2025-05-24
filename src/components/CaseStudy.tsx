@@ -67,7 +67,12 @@ export default function CaseStudy({
         <div className="space-y-4 sm:space-y-6">
           {phases.map((phase, index) => (
             <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-3 sm:pb-4 last:border-0 last:pb-0">
-              <h4 className="font-medium text-base mb-2 sm:mb-3">
+              <h4 className={cn(
+                "font-bold text-base mb-2.5 sm:mb-3.5 py-1 px-2 inline-block rounded-md",
+                index === 0 
+                  ? "bg-gradient-to-r from-agency-navy/10 to-agency-teal/10 text-agency-navy dark:from-agency-teal/20 dark:to-agency-navy/20 dark:text-white"
+                  : "bg-gradient-to-r from-agency-teal/10 to-agency-light-blue/10 text-agency-teal dark:from-agency-teal/20 dark:to-agency-light-blue/20"
+              )}>
                 {phase.name}
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
@@ -88,6 +93,7 @@ export default function CaseStudy({
                       suffix={stat.suffix || beforeMetrics[stat.id]?.suffix || ''}
                       newMetric={stat.isNew}
                       metricId={stat.id}
+                      isBaselinePhase={index === 0}
                     />
                   );
                 })}
