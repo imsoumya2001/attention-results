@@ -19,6 +19,7 @@ const beforeMetrics = {
 const phases: Phase[] = [
   {
     name: 'Baseline (Oct 2024)',
+    summary: 'Initial performance metrics before implementing our marketing strategy.',
     stats: [
       { id: 'takeaway', label: 'Daily Takeaway', value: 13 },
       { id: 'aggregatorOrders', label: 'Daily Aggregator Orders', value: 8 },
@@ -30,6 +31,7 @@ const phases: Phase[] = [
   },
   {
     name: 'After 3 Months (Jan 2025)',
+    summary: 'Significant growth achieved through targeted social media campaigns and customer engagement strategies.',
     stats: [
       { id: 'takeaway', label: 'Daily Takeaway', value: 29 },
       { id: 'aggregatorOrders', label: 'Daily Aggregator Orders', value: 18 },
@@ -41,6 +43,7 @@ const phases: Phase[] = [
   },
   {
     name: 'Ramadan (Feb-Mar 2025)',
+    summary: 'Special Ramadan menu launch with buffet service drove exceptional growth during the holy month.',
     stats: [
       { id: 'buffet', label: 'Daily Buffet Orders', value: 61 },
       { id: 'takeaway', label: 'Daily Takeaway', value: 36 },
@@ -56,6 +59,7 @@ const phases: Phase[] = [
 
 const latestPhase: Phase = {
   name: 'April 2025',
+  summary: 'Sustained growth with optimized marketing spend and enhanced customer retention strategies.',
   stats: [
     { id: 'dailyTotal', label: 'Daily Takeaway + Aggregators', value: 39 },
     { id: 'aov', label: 'Average Order Value', value: 3.3, prefix: 'OMR ' },
@@ -76,6 +80,7 @@ export default function ArizRestaurantCaseStudy() {
         joinDate="Joined November 2024"
         phases={phases}
         beforeMetrics={beforeMetrics}
+        tags={['restaurant', 'oman']}
       />
       <Collapsible open={open} onOpenChange={setOpen} className="mt-3 sm:mt-4">
         <CollapsibleTrigger className="w-full p-2 sm:p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
@@ -90,6 +95,7 @@ export default function ArizRestaurantCaseStudy() {
             phases={[latestPhase]}
             beforeMetrics={beforeMetrics}
             isLatestResults
+            tags={['restaurant', 'oman', 'apr-2025']}
           />
         </CollapsibleContent>
       </Collapsible>

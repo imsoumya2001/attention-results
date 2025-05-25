@@ -4,6 +4,7 @@ import StatsCard from './StatsCard';
 
 export interface Phase {
   name: string;
+  summary?: string;
   stats: {
     id: string;
     label: string;
@@ -21,6 +22,7 @@ interface CaseStudyProps {
   phases: Phase[];
   beforeMetrics: Record<string, { value: string | number; prefix?: string; suffix?: string }>;
   isLatestResults?: boolean;
+  tags?: string[];
 }
 
 export default function CaseStudy({ 
@@ -29,7 +31,8 @@ export default function CaseStudy({
   joinDate, 
   phases,
   beforeMetrics,
-  isLatestResults = false
+  isLatestResults = false,
+  tags = []
 }: CaseStudyProps) {
   
   const calculateGrowth = (id: string, currentValue: string | number) => {
@@ -48,7 +51,7 @@ export default function CaseStudy({
     <div className={cn(
       "glass-card rounded-xl overflow-hidden",
       !isLatestResults && "mb-4"
-    )}>
+    )} data-tags={tags.join(',')}>
       {!isLatestResults && title && (
         <div className="bg-agency-navy p-4 text-white">
           <h3 className="text-lg md:text-xl font-bold">{title}</h3>
@@ -98,6 +101,13 @@ export default function CaseStudy({
                   );
                 })}
               </div>
+              {phase.summary && (
+                <div className="mt-3 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-md">
+                  <p className="text-sm text-gray-700 dark:text-gray-300" contentEditable suppressContentEditableWarning>
+                    {phase.summary}
+                  </p>
+                </div>
+              )}
             </div>
           ))}
         </div>
