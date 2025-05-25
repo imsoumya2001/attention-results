@@ -89,25 +89,18 @@ export default function CaseStudy({
                       label={stat.label}
                       baseline={beforeMetrics[stat.id]?.value || '—'}
                       current={stat.value}
-                      growth={index === 0 ? undefined : growth}
+                      growth={(!isLatestResults && index === 0) ? undefined : growth}
                       isPositive={growth ? growth > 0 : true}
                       isReduction={isReduction}
                       prefix={stat.prefix || beforeMetrics[stat.id]?.prefix || ''}
                       suffix={stat.suffix || beforeMetrics[stat.id]?.suffix || ''}
                       newMetric={stat.isNew}
                       metricId={stat.id}
-                      isBaselinePhase={index === 0}
+                      isBaselinePhase={!isLatestResults && index === 0}
                     />
                   );
                 })}
               </div>
-              {phase.summary && (
-                <div className="mt-3 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-md">
-                  <p className="text-sm text-gray-700 dark:text-gray-300" contentEditable suppressContentEditableWarning>
-                    {phase.summary}
-                  </p>
-                </div>
-              )}
             </div>
           ))}
         </div>

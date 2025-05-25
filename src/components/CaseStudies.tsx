@@ -24,37 +24,49 @@ export default function CaseStudies() {
 
   useEffect(() => {
     // Filter case studies based on active tags
-    const caseStudyElements = document.querySelectorAll('[data-tags]');
+    const caseStudyContainers = document.querySelectorAll('[data-case-study-container]');
     
-    caseStudyElements.forEach((element) => {
-      const htmlElement = element as HTMLElement;
-      const elementTags = htmlElement.getAttribute('data-tags')?.split(',') || [];
+    caseStudyContainers.forEach((container) => {
+      const htmlContainer = container as HTMLElement;
+      const caseStudyElements = htmlContainer.querySelectorAll('[data-tags]');
       
       if (activeTags.includes('all')) {
-        htmlElement.style.display = 'block';
+        htmlContainer.style.display = 'block';
+        // Show all elements within the container
+        caseStudyElements.forEach((element) => {
+          (element as HTMLElement).style.display = 'block';
+        });
       } else if (activeTags.includes('apr-2025')) {
-        // Special handling for Apr 2025 - show latest results
-        const latestResults = htmlElement.querySelector('[data-latest-results]');
-        if (latestResults) {
-          htmlElement.style.display = 'block';
-          // Show only latest results sections
-          const phases = htmlElement.querySelectorAll('[data-phase]');
-          phases.forEach((phase) => {
-            const phaseElement = phase as HTMLElement;
-            const phaseName = phaseElement.getAttribute('data-phase');
-            if (phaseName?.toLowerCase().includes('april') || phaseName?.toLowerCase().includes('apr')) {
-              phaseElement.style.display = 'block';
-            } else {
-              phaseElement.style.display = 'none';
-            }
-          });
-        } else {
-          htmlElement.style.display = 'none';
-        }
+        // Special handling for Apr 2025 - show only latest results
+        let hasLatestResults = false;
+        caseStudyElements.forEach((element) => {
+          const htmlElement = element as HTMLElement;
+          const elementTags = htmlElement.getAttribute('data-tags')?.split(',') || [];
+          
+          if (elementTags.includes('apr-2025')) {
+            htmlElement.style.display = 'block';
+            hasLatestResults = true;
+          } else {
+            htmlElement.style.display = 'none';
+          }
+        });
+        htmlContainer.style.display = hasLatestResults ? 'block' : 'none';
       } else {
-        // Check if any active tag matches element tags
-        const hasMatchingTag = activeTags.some(tag => elementTags.includes(tag));
-        htmlElement.style.display = hasMatchingTag ? 'block' : 'none';
+        // Check if any case study in this container matches active tags
+        let hasMatchingCaseStudy = false;
+        caseStudyElements.forEach((element) => {
+          const htmlElement = element as HTMLElement;
+          const elementTags = htmlElement.getAttribute('data-tags')?.split(',') || [];
+          const hasMatchingTag = activeTags.some(tag => elementTags.includes(tag));
+          
+          if (hasMatchingTag) {
+            htmlElement.style.display = 'block';
+            hasMatchingCaseStudy = true;
+          } else {
+            htmlElement.style.display = 'none';
+          }
+        });
+        htmlContainer.style.display = hasMatchingCaseStudy ? 'block' : 'none';
       }
     });
   }, [activeTags]);
@@ -67,13 +79,19 @@ export default function CaseStudies() {
         animationDelay: '0.2s'
       }}>
         {/* Ariz Restaurant */}
-        <ArizRestaurantCaseStudy />
+        <div data-case-study-container>
+          <ArizRestaurantCaseStudy />
+        </div>
         
         {/* KSA Restaurant */}
-        <KSARestaurantCaseStudy />
+        <div data-case-study-container>
+          <KSARestaurantCaseStudy />
+        </div>
         
         {/* Ramag Furniture */}
-        <RamagFurnitureCaseStudy />
+        <div data-case-study-container>
+          <RamagFurnitureCaseStudy />
+        </div>
       </div>
     </section>
   );
