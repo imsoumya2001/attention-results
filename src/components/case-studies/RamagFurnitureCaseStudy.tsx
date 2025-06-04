@@ -29,10 +29,10 @@ const phases: Phase[] = [
     name: 'After 3 Months (Oct 2024)',
     summary: 'Dramatic improvement in lead generation and cost efficiency through targeted digital campaigns and website optimization.',
     stats: [
-      { id: 'inquiries', label: 'Monthly Online Inquiries', value: 188 },
+      { id: 'inquiries', label: 'Monthly Online Inquiries', value: 89 },
       { id: 'siteVisits', label: 'Site Visits from Online', value: 29, isNew: true },
       { id: 'projects', label: 'Projects from Online Inquiries', value: 8, isNew: true },
-      { id: 'cpi', label: 'Cost Per Inquiry', value: 2.4, prefix: '$' },
+      { id: 'cpi', label: 'Cost Per Inquiry', value: 6.80, prefix: '$' },
       { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 451, prefix: 'OMR ' }
     ]
   },
@@ -42,11 +42,11 @@ const latestPhase: Phase = {
   name: 'Further Growth (Apr 2025)',
   summary: 'Continued expansion with enhanced conversion rates and strategic marketing investment for long-term growth.',
   stats: [
-    { id: 'inquiries', label: 'Monthly Online Inquiries', value: 291 },
+    { id: 'inquiries', label: 'Monthly Online Inquiries', value: 156 },
     { id: 'siteVisits', label: 'Site Visits from Online', value: 28 },
-    { id: 'projects', label: 'Projects from Online Inquiries', value: 14 },
-    { id: 'cpi', label: 'Cost Per Inquiry', value: 2.2, prefix: '$' },
-    { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 640, prefix: 'OMR ' }
+    { id: 'projects', label: 'Projects from Online Inquiries', value: 9 },
+    { id: 'cpi', label: 'Cost Per Inquiry', value: 5.50, prefix: '$' },
+    { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 855, prefix: 'OMR ' }
   ]
 };
 
@@ -61,7 +61,7 @@ export default function RamagFurnitureCaseStudy() {
         joinDate="Joined August 2024"
         phases={phases}
         beforeMetrics={beforeMetrics}
-        tags={['furniture', 'contractors', 'oman']}
+        tags={['furniture', 'contractors']}
       />
       <Collapsible open={open} onOpenChange={setOpen} className="mt-4">
         <CollapsibleTrigger className="w-full p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
@@ -76,7 +76,7 @@ export default function RamagFurnitureCaseStudy() {
             phases={[latestPhase]}
             beforeMetrics={beforeMetrics}
             isLatestResults
-            tags={['furniture', 'contractors', 'oman', 'apr-2025']}
+            tags={['furniture', 'contractors', 'apr-2025']}
           />
         </CollapsibleContent>
       </Collapsible>

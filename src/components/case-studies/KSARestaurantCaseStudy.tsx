@@ -24,9 +24,9 @@ const phases: Phase[] = [
   {
     name: 'After Results (Apr-May, ~1 month)',
     stats: [
-      { id: 'dailyOrders', label: 'Daily Takeaway + Aggregators', value: 36 },
-      { id: 'aov', label: 'Average Order Value', value: 38, prefix: 'SAR ' },
-      { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 281, isNew: true },
+      { id: 'dailyOrders', label: 'Daily Takeaway + Aggregators', value: 32 },
+      { id: 'aov', label: 'Average Order Value', value: 35, prefix: 'SAR ' },
+      { id: 'whatsappOrders', label: 'Monthly WhatsApp Orders', value: 156, isNew: true },
       { id: 'impressions', label: 'Monthly Instagram Impressions', value: 512000 },
       { id: 'marketingSpend', label: 'Monthly Marketing Spend', value: 421, prefix: 'OMR ' }
     ]
