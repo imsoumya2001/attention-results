@@ -1,6 +1,7 @@
 
 import { cn } from '@/lib/utils';
 import StatsCard from './StatsCard';
+import { Badge } from '@/components/ui/badge';
 
 export interface Phase {
   name: string;
@@ -46,6 +47,21 @@ export default function CaseStudy({
     
     return Math.round((currentNumValue - baseValue) / baseValue * 100);
   };
+
+  const getTagColor = (tag: string) => {
+    switch (tag) {
+      case 'oman':
+      case 'qatar':
+      case 'uae':
+      case 'ksa':
+        return 'bg-agency-teal/20 text-agency-teal';
+      case 'b2b':
+      case 'b2c':
+        return 'bg-agency-navy/20 text-agency-navy';
+      default:
+        return 'bg-gray-200 text-gray-700';
+    }
+  };
   
   return (
     <div className={cn(
@@ -54,8 +70,26 @@ export default function CaseStudy({
     )} data-tags={tags.join(',')}>
       {!isLatestResults && title && (
         <div className="bg-agency-navy p-4 text-white">
-          <h3 className="text-lg md:text-xl font-bold">{title}</h3>
-          <p className="text-white/70 text-sm">{subtitle}</p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+              <h3 className="text-lg md:text-xl font-bold">{title}</h3>
+              <p className="text-white/70 text-sm">{subtitle}</p>
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {tags.map((tag) => (
+                <Badge 
+                  key={tag} 
+                  className={cn(
+                    "text-xs px-2 py-0.5 rounded-full font-medium",
+                    getTagColor(tag)
+                  )}
+                  variant="outline"
+                >
+                  {tag.toUpperCase()}
+                </Badge>
+              ))}
+            </div>
+          </div>
         </div>
       )}
       
@@ -81,7 +115,7 @@ export default function CaseStudy({
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
                 {phase.stats.map((stat) => {
                   const growth = calculateGrowth(stat.id, stat.value);
-                  const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi';
+                  const isReduction = stat.id === 'marketingSpend' || stat.id === 'cpi' || stat.id === 'costPerLead';
                   
                   return (
                     <StatsCard

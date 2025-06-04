@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import ArizRestaurantCaseStudy from './case-studies/ArizRestaurantCaseStudy';
 import KSARestaurantCaseStudy from './case-studies/KSARestaurantCaseStudy';
 import RamagFurnitureCaseStudy from './case-studies/RamagFurnitureCaseStudy';
+import DiamondJewelryCaseStudy from './case-studies/DiamondJewelryCaseStudy';
+import ColdStorageCaseStudy from './case-studies/ColdStorageCaseStudy';
 import FilterTags from './FilterTags';
 
 export default function CaseStudies() {
@@ -91,6 +93,16 @@ export default function CaseStudies() {
         {/* Ramag Furniture */}
         <div data-case-study-container>
           <RamagFurnitureCaseStudy />
+        </div>
+        
+        {/* Diamond Jewelry Store */}
+        <div data-case-study-container>
+          <DiamondJewelryCaseStudy />
+        </div>
+        
+        {/* B2B Cold Storage */}
+        <div data-case-study-container>
+          <ColdStorageCaseStudy />
         </div>
       </div>
     </section>

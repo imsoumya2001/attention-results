@@ -1,22 +1,24 @@
 
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { X, Tag, Utensils, Sofa, Hammer, Calendar } from 'lucide-react';
+import { X, Globe, Building2, ShoppingBag, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FilterTag {
   id: string;
   label: string;
-  type: 'all' | 'industry' | 'date';
+  type: 'all' | 'location' | 'business';
   icon: React.ReactNode;
 }
 
 const availableTags: FilterTag[] = [
-  { id: 'all', label: 'All', type: 'all', icon: <Tag className="w-3 h-3" /> },
-  { id: 'restaurant', label: 'Restaurant', type: 'industry', icon: <Utensils className="w-3 h-3" /> },
-  { id: 'furniture', label: 'Furniture', type: 'industry', icon: <Sofa className="w-3 h-3" /> },
-  { id: 'contractors', label: 'Contractors', type: 'industry', icon: <Hammer className="w-3 h-3" /> },
-  { id: 'apr-2025', label: 'Apr 2025', type: 'date', icon: <Calendar className="w-3 h-3" /> },
+  { id: 'all', label: 'All', type: 'all', icon: <Globe className="w-3 h-3" /> },
+  { id: 'oman', label: 'Oman', type: 'location', icon: <MapPin className="w-3 h-3" /> },
+  { id: 'qatar', label: 'Qatar', type: 'location', icon: <MapPin className="w-3 h-3" /> },
+  { id: 'uae', label: 'UAE', type: 'location', icon: <MapPin className="w-3 h-3" /> },
+  { id: 'ksa', label: 'KSA', type: 'location', icon: <MapPin className="w-3 h-3" /> },
+  { id: 'b2b', label: 'B2B', type: 'business', icon: <Building2 className="w-3 h-3" /> },
+  { id: 'b2c', label: 'B2C', type: 'business', icon: <ShoppingBag className="w-3 h-3" /> },
 ];
 
 interface FilterTagsProps {
@@ -53,9 +55,9 @@ export default function FilterTags({ onFilterChange }: FilterTagsProps) {
       switch (type) {
         case 'all':
           return 'bg-agency-navy text-white hover:bg-agency-navy/90';
-        case 'industry':
+        case 'location':
           return 'bg-agency-teal text-white hover:bg-agency-teal/90';
-        case 'date':
+        case 'business':
           return 'bg-gradient-to-r from-agency-teal to-agency-light-blue text-white hover:from-agency-teal/90 hover:to-agency-light-blue/90';
         default:
           return 'bg-agency-teal text-white hover:bg-agency-teal/90';
@@ -66,7 +68,7 @@ export default function FilterTags({ onFilterChange }: FilterTagsProps) {
 
   return (
     <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-4">
-      <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
+      <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4">
         {availableTags.map((tag) => {
           const isActive = activeTags.includes(tag.id);
           return (
@@ -74,7 +76,7 @@ export default function FilterTags({ onFilterChange }: FilterTagsProps) {
               key={tag.id}
               onClick={() => handleTagClick(tag.id)}
               className={cn(
-                "inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200",
+                "inline-flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200",
                 getTagColor(tag.type, isActive),
                 "hover:scale-105 active:scale-95"
               )}
@@ -87,6 +89,10 @@ export default function FilterTags({ onFilterChange }: FilterTagsProps) {
             </button>
           );
         })}
+      </div>
+      
+      <div className="text-center text-xs sm:text-sm text-agency-navy/70 dark:text-white/70">
+        <span className="font-medium">Strategies Implemented:</span> B2B Lead Generation and Outreach, Email Marketing, WhatsApp Marketing, LinkedIn Ads, Google Ads and SEO, Cold Calling.
       </div>
     </div>
   );

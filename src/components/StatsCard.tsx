@@ -11,7 +11,12 @@ import {
   Users, 
   Store, 
   Target, 
-  CreditCard
+  CreditCard,
+  Globe,
+  MessageCircle,
+  Mail,
+  Phone,
+  MapPin
 } from 'lucide-react';
 
 interface StatsCardProps {
@@ -46,7 +51,7 @@ export default function StatsCard({
   
   // Format numbers with k for thousands (for Instagram impressions)
   const formatValue = (value: string | number) => {
-    if (metricId === 'impressions' && typeof value === 'number' && value >= 1000) {
+    if ((metricId === 'impressions' || metricId === 'instagramReach') && typeof value === 'number' && value >= 1000) {
       return `${Math.round(value / 1000)}k`;
     }
     return value;
@@ -64,11 +69,11 @@ export default function StatsCard({
       case 'whatsappOrders':
         return <Smartphone className="w-3 h-3 text-agency-teal" />;
       case 'impressions':
+      case 'instagramReach':
         return <Instagram className="w-3 h-3 text-agency-teal" />;
       case 'marketingSpend':
         return <CreditCard className="w-3 h-3 text-agency-teal" />;
       case 'dailyTotal':
-        return <ShoppingBag className="w-3 h-3 text-agency-teal" />;
       case 'dailyOrders':
         return <ShoppingBag className="w-3 h-3 text-agency-teal" />;
       case 'buffet':
@@ -78,9 +83,19 @@ export default function StatsCard({
       case 'projects':
         return <Target className="w-3 h-3 text-agency-teal" />;
       case 'inquiries':
-        return <Users className="w-3 h-3 text-agency-teal" />;
+      case 'onlineInquiries':
+        return <MessageCircle className="w-3 h-3 text-agency-teal" />;
       case 'cpi':
+      case 'costPerLead':
         return <DollarSign className="w-3 h-3 text-agency-teal" />;
+      case 'websiteTraffic':
+        return <Globe className="w-3 h-3 text-agency-teal" />;
+      case 'storeTraffic':
+        return <MapPin className="w-3 h-3 text-agency-teal" />;
+      case 'emailResponseRate':
+        return <Mail className="w-3 h-3 text-agency-teal" />;
+      case 'callsFromMaps':
+        return <Phone className="w-3 h-3 text-agency-teal" />;
       default:
         return showAsPositive ? 
           <TrendingUp className="w-3 h-3 text-agency-teal" /> : 

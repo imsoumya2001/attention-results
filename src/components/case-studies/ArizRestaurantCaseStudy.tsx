@@ -80,7 +80,7 @@ export default function ArizRestaurantCaseStudy() {
         joinDate="Joined November 2024"
         phases={phases}
         beforeMetrics={beforeMetrics}
-        tags={['restaurant']}
+        tags={['oman', 'b2c']}
       />
       <Collapsible open={open} onOpenChange={setOpen} className="mt-3 sm:mt-4">
         <CollapsibleTrigger className="w-full p-2 sm:p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
@@ -95,7 +95,7 @@ export default function ArizRestaurantCaseStudy() {
             phases={[latestPhase]}
             beforeMetrics={beforeMetrics}
             isLatestResults
-            tags={['restaurant', 'apr-2025']}
+            tags={['oman', 'b2c']}
           />
         </CollapsibleContent>
       </Collapsible>

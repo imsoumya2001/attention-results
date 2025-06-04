@@ -61,7 +61,7 @@ export default function RamagFurnitureCaseStudy() {
         joinDate="Joined August 2024"
         phases={phases}
         beforeMetrics={beforeMetrics}
-        tags={['furniture', 'contractors']}
+        tags={['oman', 'b2c', 'b2b']}
       />
       <Collapsible open={open} onOpenChange={setOpen} className="mt-4">
         <CollapsibleTrigger className="w-full p-3 flex items-center justify-center gap-2 rounded-lg bg-agency-teal/10 text-agency-teal hover:bg-agency-teal/20 transition-all">
@@ -76,7 +76,7 @@ export default function RamagFurnitureCaseStudy() {
             phases={[latestPhase]}
             beforeMetrics={beforeMetrics}
             isLatestResults
-            tags={['furniture', 'contractors', 'apr-2025']}
+            tags={['oman', 'b2c', 'b2b']}
           />
         </CollapsibleContent>
       </Collapsible>

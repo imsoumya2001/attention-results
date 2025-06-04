@@ -42,7 +42,7 @@ export default function KSARestaurantCaseStudy() {
         joinDate="Joined April 14th, 2025"
         phases={phases}
         beforeMetrics={beforeMetrics}
-        tags={['restaurant']}
+        tags={['ksa', 'b2c']}
       />
     </div>
   );
